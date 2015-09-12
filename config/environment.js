@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'ember-app',
+    modulePrefix: 'x-square',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
