@@ -1,99 +1,53 @@
-######################
-###    x-Square    ###
-######################
+# Ember-app
 
-This app is supposed to be a somewhat basic CRUD application with user authentication.The goal is a solid API which can be used to build out web and mobile applications. The general purpose of the app is for people to record and keep track of "adventures". I'd eventually like to look into seeing how difficult it would be to make some sort of sharable feature for things like facebook and twitter.
+This README outlines the details of collaborating on this Ember application.
+A short introduction of this app could easily go here.
 
-The example we have used so far is recording a dive. The diver is able to recordthings like the location, name of divemaster and boat captain or charter if applicable, record or add things like pictures or sea life from the dive. Also tag other divers that they were with. This would record the entire experience and then allow them to share it via other social media and allow other people to come check out what they've done.
+## Prerequisites
 
-### Install an app
+You will need the following things properly installed on your computer.
 
-Run the following command in root directory of an app in command prompt.
+* [Git](http://git-scm.com/)
+* [Node.js](http://nodejs.org/) (with NPM)
+* [Bower](http://bower.io/)
+* [Ember CLI](http://www.ember-cli.com/)
+* [PhantomJS](http://phantomjs.org/)
 
-###### *Install node packages*
+## Installation
 
-server/ npm install
+* `git clone <repository-url>` this repository
+* change into the new directory
+* `npm install`
+* `bower install`
 
-###### *Install bower components*
+## Running / Development
 
-client/src/ bower install
+* `ember server`
+* Visit your app at [http://localhost:4200](http://localhost:4200).
 
-### Run an app
+### Code Generators
 
-###### *Run Server*
+Make use of the many generators for code, try `ember help generate` for more details
 
-Run the following command in root directory of an app in command prompt.
+### Running Tests
 
-server/ node server.js
+* `ember test`
+* `ember test --server`
 
-You can see the port number in command prompt after successful run
+### Building
 
-You can change the settings in server/config/config.js file
+* `ember build` (development)
+* `ember build --environment production` (production)
 
-Change email id in server/config/config.js which will be used to send account credential when new account is created.
+### Deploying
 
-### *User Story*
+Specify what it takes to deploy your app.
 
-	1. Register new user. Registration requires a valid email address which will be used as his username.
+## Further Reading / Useful Links
 
-	2. An email address can only be registered once.
+* [ember.js](http://emberjs.com/)
+* [ember-cli](http://www.ember-cli.com/)
+* Development Browser Extensions
+  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
+  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
 
-	3. After registration a verification link is send to user email address.
-
-	4. Verify your account by clicking on link send to your email address and on successful verification you will be redirected to login page.
-
-	5. If you are not verified your account after creation, you will not be allowed to land to dashboard after success login.
-
-	6. You can only go to dashboard if your account is verified.
-
-	7. Will have the option to resend the password to registered email address in case you forget.
-
-	8. Will also have the option to resend verification link to registered email address to verify account.
-
-
-### *API Available*
-
-###### *Create User*
-
-	POST: http://localhost:8000/user
-
-	{
-	"userName": "email@x-square.com",
-	"password": "passwd"
-	}
-
-An email is send to email@domain.com to verify account created. Email contains a verification link which on click will verify your account and redirect to login page.
-
-Verification Link will look like http://127.0.0.1:8000/verifyEmail/token, where verifyEmail is the url for login page and token you get is used to verify account. Using token you get you need to hit the below api
-
-###### *Verify User*
-
-	POST: http://localhost:8000/verifyEmail
-
-	Authorization Header: Bearer token
-
-###### *Resend Verification Email*
-
-	POST: http://localhost:8000/resendVerificationEmail
-
-	{
-	"userName": "email@x-square.com",
-	"password": "passwd"
-	}
-
-###### *User Login*
-
-	POST: http://localhost:8000/login
-
-    {
-	"userName": "email@x-square.com",
-	"password": "passwd"
-	}
-
-###### *Forgot Password*
-
-	POST: http://localhost:8000/forgotPassword
-
-    {
-	"userName": "email@x-square.com"
-	}
