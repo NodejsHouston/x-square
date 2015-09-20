@@ -1,5 +1,5 @@
 var Hapi = require('hapi');
-var User = require('./models/user');
+var users = require('./routes/users');
 var db = require('./models/database');
 
 var connectionString = 'localhost/test';
@@ -20,63 +20,9 @@ server.route({
     }
 });
 
-server.route({
-  method: 'POST',
-  path:'/api/users/add',
-  handler: function(request, reply){
-
-    var newUser = new User();
-
-    newUser.create(request.payload.name, 
-                  request.payload.email, 
-                  function(result){
-      if(result.err){
-        console.log(result.err);
-        return reply({ err: result.err });
-      } else {
-        return reply({ result: 'success' });
-      }
-    });
-  }
-});
-
-server.route({
-  method: 'POST',
-  path:'/api/users/delete',
-  handler: function(request, reply){
-
-    var user = new User();
-
-    user.delete(request.payload.email, 
-                function(result){
-      if(result.err){
-        console.log(result.err);
-        return reply({ err: result.err });
-      } else {
-        return reply({ result: 'success' });
-      }       
-    });
-  }
-});
-
-server.route({
-  method: 'GET',
-  path:'/api/users/getAll',
-  handler: function(request, reply){
-
-    var user = new User();
-
-    user.getAll(function(result){
-      if(result.err){
-        console.log(result.err);
-        return reply({ err: result.err });
-      } else {
-        console.log(result)
-        return reply({ result: result });
-      }       
-    });
-  }
-});
+server.route(users);
+//once events file is complete
+//server.route(events);
 
 // Start the server
 server.start(function () {
