@@ -1,5 +1,6 @@
 var Hapi = require('hapi');
 var users = require('./routes/users');
+var events = require('./routes/events')
 var db = require('./models/database');
 
 var connectionString = 'localhost/test';
@@ -11,18 +12,8 @@ server.connection({
     port: 8000 
 });
 
-// Add the route
-server.route({
-    method: 'GET',
-    path:'/hello', 
-    handler: function (request, reply) {
-        reply('hello world');
-    }
-});
-
 server.route(users);
-//once events file is complete
-//server.route(events);
+server.route(events);
 
 // Start the server
 server.start(function () {
