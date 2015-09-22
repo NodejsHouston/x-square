@@ -7,11 +7,14 @@ var userSchema = mongoose.Schema({
   joinDate: Date
 });
 
-userSchema.methods.create = function(userName, userEmail, cb){
+userSchema.methods.create = function(userName, userEmail, joinDate, cb){
  
+  var userDate = joinDate != null ? joinDate : new Date();
+
   var newUser = new User({
     name: userName,
-    email: userEmail
+    email: userEmail,
+    joinDate: userDate
   });
 
   newUser.save(function (err, newUser, numberAffected) {
@@ -21,6 +24,23 @@ userSchema.methods.create = function(userName, userEmail, cb){
     } else{
       console.log('user added');
       cb({result: numberAffected});
+    }
+  });
+}
+
+userSchema.methods.getByEmail = function(userEmail, cb){
+
+  //find a user by email
+  User.findOne({ email: userEmail },
+               //callback
+               function (err, user) {
+    if (!err) {
+      console.log('found user: ' + user);
+      cb({ user: user });
+    }
+    else {
+      console.log('error finding user');
+      cb({ err: err });
     }
   });
 }

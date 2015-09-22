@@ -10,6 +10,7 @@ module.exports = [{
 
       newUser.create(request.payload.name, 
                     request.payload.email, 
+                    null,
                     function(result){
         if(result.err){
           console.log(result.err);
@@ -42,6 +43,27 @@ module.exports = [{
 
   {
     method: 'GET',
+    path:'/api/users/getByEmail',
+    handler: function(request, reply){
+
+      var user = new User();
+      user.getByEmail(request.query.email,
+                      function(result){
+        if(result.err){
+          console.log('error finding user');
+          console.log(result.err);
+          return reply({ err: result.err });
+        } else {
+          console.log('found user');
+          console.log(result);
+          return reply({ result: result });
+        } 
+      });
+    }
+  },
+
+  {
+    method: 'GET',
     path:'/api/users/getAll',
     handler: function(request, reply){
 
@@ -52,7 +74,6 @@ module.exports = [{
           console.log(result.err);
           return reply({ err: result.err });
         } else {
-          console.log(result)
           return reply({ result: result });
         }       
       });

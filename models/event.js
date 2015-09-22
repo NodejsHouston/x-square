@@ -29,6 +29,11 @@ eventSchema.methods.create = function(title, date, content, userName, cb){
   });
 }
 
+eventSchema.methods.getById = function(id, cb){
+ 
+  //To-do
+}
+
 eventSchema.methods.update = function(id, title, date, status, content, userName, cb){
  
   var conditions = { _id: id };
@@ -55,7 +60,6 @@ eventSchema.methods.update = function(id, title, date, status, content, userName
 eventSchema.methods.getAll = function(cb){
   Event.find(function (err, events) {
     if (!err) {
-      console.log(events);
       cb({ result: events });
     }
     else {

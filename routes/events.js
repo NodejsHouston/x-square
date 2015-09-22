@@ -49,6 +49,17 @@ module.exports = [{
 
   {
     method: 'GET',
+    path:'/api/events/getById',
+    handler: function(request, reply){
+
+      //TO-DO
+
+        
+    }
+  },
+
+  {
+    method: 'GET',
     path:'/api/events/getAll',
     handler: function(request, reply){
 
@@ -56,7 +67,6 @@ module.exports = [{
 
       events.getAll(function(result){
         if(result.err){
-          console.log(result.err);
           return reply({ err: result.err });
         } else {
           console.log(result)
