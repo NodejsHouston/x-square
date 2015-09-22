@@ -28,3 +28,5 @@ server.start(function () {
       }
     })
 });
+
+module.exports = server;

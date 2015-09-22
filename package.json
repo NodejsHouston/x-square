@@ -10,12 +10,16 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember test"
+    "//": "swap between two tests to test ember vs. hapi",
+    "//": "test: ember test", 
+    "//": "npm test to launch tests",
+    "test": "./node_modules/lab/bin/lab -c ./hapi_test/*.js"
   },
   "repository": "",
   "engines": {
     "node": ">= 0.10.0"
   },
+
   "author": "",
   "license": "MIT",
   "devDependencies": {
