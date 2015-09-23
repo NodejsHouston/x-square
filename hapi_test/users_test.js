@@ -4,7 +4,7 @@ var lab = exports.lab = Lab.script();         // load Lab module
 var server = require("../index.js");          // our index.js from above
 
 lab.experiment("User http tests", function() {
-
+    
     //add a user as the first part of the test
     //we will then try to add the same user (should fail)
     //then we will remove the user (should succeed)

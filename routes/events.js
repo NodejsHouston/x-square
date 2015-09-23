@@ -52,8 +52,19 @@ module.exports = [{
     path:'/api/events/getById',
     handler: function(request, reply){
 
-      //TO-DO
-
+      var event = new Event();
+      event.getById(request.query.id,
+                      function(result){
+        if(result.err){
+          console.log('error finding event');
+          console.log(result.err);
+          return reply({ err: result.err });
+        } else {
+          console.log('found event');
+          console.log(result);
+          return reply({ result: result });
+        } 
+      });
         
     }
   },

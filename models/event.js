@@ -31,7 +31,18 @@ eventSchema.methods.create = function(title, date, content, userName, cb){
 
 eventSchema.methods.getById = function(id, cb){
  
-  //To-do
+  Event.findOne({ _id: id },
+               //callback
+               function (err, event) {
+    if (!err) {
+      console.log('found event: ' + event);
+      cb({ event: event });
+    }
+    else {
+      console.log('error finding event');
+      cb({ err: err });
+    }
+  });
 }
 
 eventSchema.methods.update = function(id, title, date, status, content, userName, cb){

@@ -5,6 +5,9 @@ var server = require("../index.js");
 
 lab.experiment("User http tests", function() {
 
+    //used to store an event id after creation 
+    var testEventId = '';
+
     lab.test("POST should insert a post and return success", function(done) {
         var options = {
             method: "POST",
@@ -32,12 +35,27 @@ lab.experiment("User http tests", function() {
         
         server.inject(options, function(response) {
             Code.expect(response.statusCode).to.equal(200);
-            Code.expect(response.result.result.result.length).to.be.above(0); 
+            Code.expect(response.result.result.result.length).to.be.above(0);
+            testEventId = response.result.result.result[0]._id; 
             done();                                      
         });
     });
 
-    lab.test("GET should return ")
+    //this add should fail since the user already exists
+    lab.test("GET should get an event by id", function(done) {
+        var options = {
+            method: "GET",
+            url: "/api/events/getById?id=" + testEventId
+        };
+        
+        server.inject(options, function(response) {
+            console.log(response.result.result);
+            Code.expect(response.statusCode).to.equal(200);
+            Code.expect(response.result.result.event.date).to.exist();
+            Code.expect(response.result.result.event.content).to.exist(); 
+            done();                                      
+        });
+    });
 
     //this add should fail since the user already exists
     lab.test("POST should update an event by id", function(done) {
@@ -45,7 +63,6 @@ lab.experiment("User http tests", function() {
             method: "POST",
             url: "/api/events/update",
             payload: {
-                //id: '1'
                 title: 'test',
                 date: new Date(),
                 status: 'active',
