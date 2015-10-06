@@ -1,0 +1,8 @@
+#!
+#
+#   This is a text file to initiate the Folder DocXsq/   under Public/  in x-square/
+#
+#   To create - upload Static html files produced by KW using Komposer/SeaMonkey (FFox variant)
+#     until alt utilities are found or created.	1 Oct15
+#
+#
