@@ -8,6 +8,7 @@ var Router = Ember.Router.extend({
 Router.map(function() {
   this.route('login', {path: '/login'});
   this.route('create', {path: '/create'});
+  this.route('event1', {path: '/ev'});
 });
 
 export default Router;
